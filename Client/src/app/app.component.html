@@ -1,6 +1,15 @@
 <h1>Partypeople</h1>
-<button *ngIf="!userAuthorized; else showAuthorized" (click)="initialize()">Authorize</button>
-<h4>Welcome {{ userProfileData.display_name }}!</h4>
+<button
+  *ngIf="!userAuthorized; else showAuthorized"
+  (click)="authorizationSvc.initialize()"
+>
+  Authorize
+</button>
+<h4 *ngIf="userProfileData">Welcome {{ userProfileData.display_name }}!</h4>
+<br />
+<button *ngIf="userAuthorized" (click)="createPlaylist()">
+  Create Playlist
+</button>
 
 <ng-template #showAuthorized>
   <h3 class="authorized-text">Authorized!</h3>
